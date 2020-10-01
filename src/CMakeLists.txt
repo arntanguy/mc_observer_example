@@ -1,0 +1,8 @@
+add_observer(ExampleFloatingBaseObserver FloatingBaseObserver.cpp FloatingBaseObserver.h)
+target_link_libraries(ExampleFloatingBaseObserver PUBLIC mc_observers::BodySensorObserver)
+if(TARGET Eigen3::Eigen)
+  target_link_libraries(ExampleFloatingBaseObserver PUBLIC Eigen3::Eigen)
+else()
+  target_include_directories(ExampleFloatingBaseObserver SYSTEM "${EIGEN3_INCLUDE_DIR}")
+endif()
+target_include_directories(ExampleFloatingBaseObserver PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> $<INSTALL_INTERFACE:include>)
